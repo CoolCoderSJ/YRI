@@ -1,0 +1,16 @@
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+.glow {
+  -webkit-box-shadow: 0 0 20px #334155;
+  -moz-box-shadow: 0 0 20px #334155;
+  box-shadow: 0 0 20px #334155;
+}
+
+.glowlesser {
+  -webkit-box-shadow: 0 0 0px #334155;
+  -moz-box-shadow: 0 0 0px #334155;
+  box-shadow: 0 0 0px #334155;
+}

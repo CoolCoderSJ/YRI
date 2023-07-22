@@ -1,0 +1,387 @@
+<html class="dark bg-white dark:bg-gray-900">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth Research Initiative</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css?v=5" />
+    <link rel="icon" 
+      type="image/png" 
+      href="/images/logo.png">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {"50":"#f8fafc","100":"#f1f5f9","200":"#e2e8f0","300":"#cbd5e1","400":"#94a3b8","500":"#64748b","600":"#475569","700":"#334155","800":"#1e293b","900":"#0f172a","950":"#020617"}
+                    }
+                },
+                fontFamily: {
+                    'body': [
+                        'Inter',
+                        'ui-sans-serif',
+                        'system-ui',
+                        '-apple-system',
+                        'system-ui',
+                        'Segoe UI',
+                        'Roboto',
+                        'Helvetica Neue',
+                        'Arial',
+                        'Noto Sans',
+                        'sans-serif',
+                        'Apple Color Emoji',
+                        'Segoe UI Emoji',
+                        'Segoe UI Symbol',
+                        'Noto Color Emoji'
+                    ],
+                    'sans': [
+                        'Inter',
+                        'ui-sans-serif',
+                        'system-ui',
+                        '-apple-system',
+                        'system-ui',
+                        'Segoe UI',
+                        'Roboto',
+                        'Helvetica Neue',
+                        'Arial',
+                        'Noto Sans',
+                        'sans-serif',
+                        'Apple Color Emoji',
+                        'Segoe UI Emoji',
+                        'Segoe UI Symbol',
+                        'Noto Color Emoji'
+                    ]
+                }
+            }
+        }
+    </script>
+    <script>
+        window.onload = () => {
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.getElementsByTagName("html")[0].classList.add('dark');
+    } else {
+        document.getElementsByTagName("html")[0].classList.remove('dark')
+    }
+    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+// Change the icons inside the button based on previous settings
+if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    themeToggleLightIcon.classList.remove('hidden');
+} else {
+    themeToggleDarkIcon.classList.remove('hidden');
+}
+
+var themeToggleBtn = document.getElementById('theme-toggle');
+
+themeToggleBtn.addEventListener('click', function() {
+
+    // toggle icons inside button
+    themeToggleDarkIcon.classList.toggle('hidden');
+    themeToggleLightIcon.classList.toggle('hidden');
+
+    // if set via local storage previously
+    if (localStorage.getItem('color-theme')) {
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.getElementsByTagName("html")[0].classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        } else {
+            document.getElementsByTagName("html")[0].classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        }
+
+    // if NOT set via local storage previously
+    } else {
+        if (document.getElementsByTagName("html")[0].classList.contains('dark')) {
+            document.getElementsByTagName("html")[0].classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        } else {
+            document.getElementsByTagName("html")[0].classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+    }
+    
+});
+        }
+</script>
+</head>
+
+<body>
+    <header style="position: sticky; top: 0; z-index: 999;">
+    <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <a href="/" class="flex items-center">
+                <img src="images/logo.png" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Youth Research Initiative</span>
+            </a>
+            <div class="flex items-center lg:order-2">
+                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+            </button>
+                <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                    <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+                <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                    <li>
+                        <a href="#" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="#info" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Mission</a>
+                    </li>
+                    <li>
+                        <a href="#reach" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Reach</a>
+                    </li>
+                    <li>
+                        <a href="#join" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Join</a>
+                    </li>
+                    <li>
+                        <a href="#team" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Team</a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <section class="bg-white dark:bg-gray-900 py-36">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Youth Research Initiative</h1>
+        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">At the Youth Research Initiative, we strive to inspire the next generation of innovators and scientists through youth advocacy and education.</p>
+        <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+            <a href="#info" class="glow inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                Learn more
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a> 
+        </div>
+    </div>
+</section>
+<section class="bg-white dark:bg-gray-900 py-24" id="info">
+    <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+        <img class="w-full rounded-lg" src="/images/microscope.png" alt="dashboard image">
+        <div class="mt-4 md:mt-0">
+            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Our Mission</h1>
+            <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">In early 2023, a group of like-minded students around the world came together to make a difference. The next generation of scientists and innovators will be facing some of the toughest challenges the world has to offer, and they sought to prepare them for the future. With a multitude of dedicated, experienced students, they believe in fostering scientific literacy and research experience in thousands of students across the world through education and outreach at the grassroots level. </p>
+        </div>
+    </div>
+</section>
+<section class="bg-white dark:bg-gray-900 py-18" id="reach">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">A Global Reach</h1>
+        <div class="mt-8 sm:mt-12">
+      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="flex flex-col rounded-lg px-4 py-8 text-center glowlesser">
+          <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-300">
+            Countries
+          </dt>
+
+          <dd class="text-4xl font-extrabold text-blue-600 dark:text-blue-400 md:text-5xl">
+            6
+          </dd>
+        </div>
+
+        <div class="flex flex-col rounded-lg px-4 py-8 text-center glowlesser">
+          <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-300">
+            States
+          </dt>
+
+          <dd class="text-4xl font-extrabold text-blue-600 dark:text-blue-400 md:text-5xl">8</dd>
+        </div>
+
+        <div class="flex flex-col rounded-lg px-4 py-8 text-center glowlesser">
+          <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-300">
+            Members
+          </dt>
+
+          <dd class="text-4xl font-extrabold text-blue-600 dark:text-blue-400 md:text-5xl">30+</dd>
+        </div>
+      </dl>
+    </div>
+    </div>
+</section>
+
+<section class="bg-white dark:bg-gray-900" id="join">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+      <div class="max-w-screen-md mb-8 lg:mb-16">
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Join The Initiative</h2>
+      </div>
+      <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
+          <div style="display: inline-flex; justify-content: space-between; flex-direction: column;">
+              <h3 class="mb-2 text-xl font-bold dark:text-white">Become a Youth Ambassador!</h3>
+              <p class="text-gray-500 dark:text-gray-400">Take action and join our Youth Ambassadorship program! Present our <i>Research is For Everyone</i> program at a school and inspire hundreds of people!</p>
+               <a style="width: fit-content;" href="/youth-ambassador" class="glow inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 mt-6">
+                Apply
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a> 
+          </div>
+          <div style="display: inline-flex; justify-content: space-between; flex-direction: column;">
+              <h3 class="mb-2 text-xl font-bold dark:text-white">Become a Chapter Leader!</h3>
+              <p class="text-gray-500 dark:text-gray-400">Chapter leaders pledge to bring youth research to their communities and organize YRI-affiliated events in their area. They also work with local Youth Ambassadors to present our <i>Research is For Everyone</i> program. Join us and make a change in your community!</p>
+              <a style="width: fit-content;" href="/chapter-leader" class="glow inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 mt-6">
+                Apply
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a> 
+          </div>
+          <div style="display: inline-flex; justify-content: space-between; flex-direction: column;">
+              <h3 class="mb-2 text-xl font-bold dark:text-white">Donate to the Initiative</h3>
+              <p class="text-gray-500 dark:text-gray-400">As a nonprofit, your proceeds will go towards furthering youth research and helping underprivileged kids make a difference in the world.</p>
+              <a style="width: fit-content;" href="/donate" class="glow inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 mt-6">
+                Donate
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a> 
+          </div>
+      </div>
+  </div>
+</section>
+
+<section class="bg-white dark:bg-gray-900" id="team">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+      <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Team</h2>
+          <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">We are an international group of diverse, dedicated students committed to inspiring the next generation of leaders, scientists, and innovators.</p>
+      </div> 
+      <div class="flex flex-col lg:flex-row xl:flex-row gap-8">
+        <div class="w-full lg:w-2/5 xl:w-2/5 pr-10">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Founders</h2>
+        </div>
+      <div class="flex flex-col gap-8 mb-6 lg:mb-16 w-full lg:w-3/5 xl:w-3/5 pl-20">
+          <div class="items-center rounded-lg sm:flex">
+            <img class="h-32 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar">
+              <div class="p-5">
+                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <a>Ankit Biswas</a>
+                  </h3>
+                  <span class="text-gray-500 dark:text-gray-400">President & Co-Founder</span>
+                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">description text goes here</p>
+                  
+              </div>
+          </div> 
+          <hr class="opacity-30">
+          <div class="items-center rounded-lg sm:flex">
+            <img class="h-32 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Avatar">
+              <div class="p-5">
+                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <a>Sritej Padmanabhan</a>
+                  </h3>
+                  <span class="text-gray-500 dark:text-gray-400">Co-CEO & Co-Founder</span>
+                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">description text goes here</p>
+                  
+              </div>
+          </div> 
+      </div>  
+      </div>
+
+      <hr class="opacity-10 mb-16">
+      <div class="flex flex-col lg:flex-row xl:flex-row gap-8">
+        <div class="w-full lg:w-2/5 xl:w-2/5 pr-10">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Executive Board</h2>
+        </div>
+      <div class="flex flex-col gap-8 mb-6 lg:mb-16 w-full lg:w-3/5 xl:w-3/5 pl-20">
+          <div class="items-center rounded-lg sm:flex">
+            <img class="h-32 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar">
+              <div class="p-5">
+                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <a>Shuchir Jain</a>
+                  </h3>
+                  <span class="text-gray-500 dark:text-gray-400">CTO</span>
+                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">description text goes here</p>
+              </div>
+          </div> 
+      </div>  
+      </div>
+
+      <hr class="opacity-10 mb-16">
+      <div class="flex flex-col lg:flex-row xl:flex-row gap-8">
+        <div class="w-full lg:w-2/5 xl:w-2/5 pr-10">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">District Directors & Chapter Leaders</h2>
+        </div>
+      <div class="flex flex-col gap-8 mb-6 lg:mb-16 w-full lg:w-3/5 xl:w-3/5 pl-20">
+          <div class="items-center rounded-lg sm:flex">
+            <img class="h-32 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar">
+              <div class="p-5">
+                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <a>John Doe</a>
+                  </h3>
+                  <span class="text-gray-500 dark:text-gray-400">District Director</span>
+                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">description text goes here</p>
+              </div>
+          </div> 
+      </div>  
+      </div>
+
+      <hr class="opacity-10 mb-16">
+      <div class="flex flex-col lg:flex-row xl:flex-row gap-8">
+        <div class="w-full lg:w-2/5 xl:w-2/5 pr-10">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Managers</h2>
+        </div>
+      <div class="flex flex-col gap-8 mb-6 lg:mb-16 w-full lg:w-3/5 xl:w-3/5 pl-20">
+          <div class="items-center rounded-lg sm:flex">
+            <img class="h-32 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar">
+              <div class="p-5">
+                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <a>John Doe</a>
+                  </h3>
+                  <span class="text-gray-500 dark:text-gray-400">Marketing Manager</span>
+                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">description text goes here</p>
+              </div>
+          </div> 
+      </div>  
+      </div>
+
+      <hr class="opacity-10 mb-16">
+      <div class="flex flex-col lg:flex-row xl:flex-row gap-8">
+        <div class="w-full lg:w-2/5 xl:w-2/5 pr-10">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Youth Ambassadors</h2>
+        </div>
+      <div class="flex flex-col gap-8 mb-6 lg:mb-16 w-full lg:w-3/5 xl:w-3/5 pl-20">
+          <div class="items-center rounded-lg sm:flex">
+            <img class="h-32 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Bonnie Avatar">
+              <div class="p-5">
+                  <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <a>John Doe</a>
+                  </h3>
+                  <span class="text-gray-500 dark:text-gray-400">Youth Ambassador</span>
+                  <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">description text goes here</p>
+              </div>
+          </div> 
+      </div>  
+      </div>
+  </div>
+</section>
+
+<section class="bg-white dark:bg-gray-900" id="contact">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+        <div class="max-w-screen-md flex flex-col lg:flex-row xl:flex-row gap-24" style="align-items: center;">
+            <h2 class="mb-0 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Contact Us</h2>
+            <div class="flex space-y-4 gap-2 flex-row sm:space-y-0 sm:space-x-4">
+                <a href="mailto:info@domain.org" style="height: fit-content;" class="mb-0 glowlesser inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <ion-icon name="mail-outline"></ion-icon>
+                </a>  
+                <a href="https://www.instagram.com/youth_research_initiative/" style="height: fit-content;" class="glowlesser inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>  
+                <a href="https://www.linkedin.com/company/96092961/admin/notifications/all/" style="height: fit-content;" class="glowlesser inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a>  
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
