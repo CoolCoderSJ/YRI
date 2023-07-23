@@ -9,6 +9,13 @@ html {
   box-shadow: 0 0 20px #334155;
 }
 
+.glowdark {
+  -webkit-box-shadow: 0 0 20px #f1f5f9;
+  -moz-box-shadow: 0 0 20px #f1f5f9;
+  box-shadow: 0 0 20px #f1f5f9;
+}
+
+
 .glowlesser {
   -webkit-box-shadow: 0 0 0px #334155;
   -moz-box-shadow: 0 0 0px #334155;
